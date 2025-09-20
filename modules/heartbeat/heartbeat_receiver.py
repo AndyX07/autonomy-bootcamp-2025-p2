@@ -21,34 +21,59 @@ class HeartbeatReceiver:
     def create(
         cls,
         connection: mavutil.mavfile,
-        args,  # Put your own arguments here
+        output_queue,
         local_logger: logger.Logger,
     ):
         """
         Falliable create (instantiation) method to create a HeartbeatReceiver object.
         """
-        pass  # Create a HeartbeatReceiver object
+        try:
+            instance = cls(cls.__private_key, connection, output_queue, local_logger)
+            return True, instance
+        except Exception as e:
+            local_logger.error(f"HeartbeatReceiver create failed: {e}", True)
+            return False, None
 
     def __init__(
         self,
         key: object,
         connection: mavutil.mavfile,
-        args,  # Put your own arguments here
+        output_queue,
+        local_logger: logger.Logger
     ) -> None:
         assert key is HeartbeatReceiver.__private_key, "Use create() method"
-
-        # Do any intializiation here
+        self._connection = connection
+        self._output_queue = output_queue
+        self._logger = local_logger
+        self.missed_count = 0
+        self.state = "Disconnected"
 
     def run(
-        self,
-        args,  # Put your own arguments here
+        self
     ):
         """
         Attempt to recieve a heartbeat message.
         If disconnected for over a threshold number of periods,
         the connection is considered disconnected.
         """
-        pass
+        try:
+            msg = self._connection.recv_match(type="HEARTBEAT", blocking=False)
+            if msg is not None:
+                self.missed_count = 0
+                if self.state != "Connected":
+                    self.state = "Connected"
+                    self._logger.info("Heartbeat connected", True)
+                self._logger.debug("Heartbeat received", True)
+            else:
+                self.missed_count += 1
+                if self.missed_count >= 5 and self.state != "Disconnected":
+                    self.state = "Disconnected"
+                    self._logger.warning("Heartbeat disconnected", True)
+            self._output_queue.queue.put(self.state)
+            return True
+        except Exception as e:
+            self._logger.error(f"HeartbeatReceiver run failed: {e}", True)
+            return False
 
 
 # =================================================================================================

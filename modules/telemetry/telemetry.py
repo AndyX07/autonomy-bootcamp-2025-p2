@@ -76,13 +76,18 @@ class Telemetry:
     def create(
         cls,
         connection: mavutil.mavfile,
-        args,  # Put your own arguments here
         local_logger: logger.Logger,
+        args,  # Put your own arguments here
     ):
         """
         Falliable create (instantiation) method to create a Telemetry object.
         """
-        pass  # Create a Telemetry object
+        try:
+            instance = cls(cls.__private_key, connection, args, local_logger)
+            return True, instance
+        except Exception as ex:
+            local_logger.error(f"Failed to create Telemetry object: {ex}")
+            return False, None
 
     def __init__(
         self,
@@ -92,12 +97,14 @@ class Telemetry:
         local_logger: logger.Logger,
     ) -> None:
         assert key is Telemetry.__private_key, "Use create() method"
-
-        # Do any intializiation here
+        self.connection = connection
+        self.args = args
+        self.local_logger = local_logger
+        self.position_msg = None
+        self.attitude_msg = None
 
     def run(
         self,
-        args,  # Put your own arguments here
     ):
         """
         Receive LOCAL_POSITION_NED and ATTITUDE messages from the drone,
@@ -106,7 +113,35 @@ class Telemetry:
         # Read MAVLink message LOCAL_POSITION_NED (32)
         # Read MAVLink message ATTITUDE (30)
         # Return the most recent of both, and use the most recent message's timestamp
-        pass
+        msg = self.connection.recv_match(
+            type=["LOCAL_POSITION_NED", "ATTITUDE"], blocking=True, timeout=1
+        )
+        if not msg:
+            self.local_logger.debug("No message received in 1s. Restarting...")
+            return None
+
+        if msg.get_type() == "LOCAL_POSITION_NED":
+            self.position_msg = msg
+        elif msg.get_type() == "ATTITUDE":
+            self.attitude_msg = msg
+        if self.position_msg and self.attitude_msg:
+            ts_boot = max(self.position_msg.time_boot_ms, self.attitude_msg.time_boot_ms)
+            telemetry_data = TelemetryData(
+                time_since_boot=ts_boot,
+                x=self.position_msg.x,
+                y=self.position_msg.y,
+                z=self.position_msg.z,
+                x_velocity=self.position_msg.vx,
+                y_velocity=self.position_msg.vy,
+                z_velocity=self.position_msg.vz,
+                roll=self.attitude_msg.roll,
+                pitch=self.attitude_msg.pitch,
+                yaw=self.attitude_msg.yaw,
+                roll_speed=self.attitude_msg.rollspeed,
+                pitch_speed=self.attitude_msg.pitchspeed,
+                yaw_speed=self.attitude_msg.yawspeed,
+            )
+            return telemetry_data
 
 
 # =================================================================================================

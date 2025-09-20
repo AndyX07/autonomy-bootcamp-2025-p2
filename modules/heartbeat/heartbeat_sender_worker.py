@@ -5,6 +5,7 @@ Heartbeat worker that sends heartbeats periodically.
 import os
 import pathlib
 import time
+from typing import Optional
 
 from pymavlink import mavutil
 
@@ -18,13 +19,16 @@ from ..common.modules.logger import logger
 # =================================================================================================
 def heartbeat_sender_worker(
     connection: mavutil.mavfile,
-    args,  # Place your own arguments here
+    controller: worker_controller.WorkerController,
+    heartbeat_period: float = 1.0,
     # Add other necessary worker arguments here
 ) -> None:
     """
     Worker process.
 
-    args... describe what the arguments are
+    - connection: pymavlink connection object (mavutil.mavlink_connection(...))
+    - controller: worker_controller.Controller used to manage worker lifecycle
+    - heartbeat_period: seconds between heartbeats
     """
     # =============================================================================================
     #                          ↑ BOOTCAMPERS MODIFY ABOVE THIS COMMENT ↑
@@ -46,10 +50,23 @@ def heartbeat_sender_worker(
     # =============================================================================================
     #                          ↓ BOOTCAMPERS MODIFY BELOW THIS COMMENT ↓
     # =============================================================================================
-    # Instantiate class object (heartbeat_sender.HeartbeatSender)
+    # Instantiate HeartbeatSender
+    result, sender = heartbeat_sender.HeartbeatSender.create(connection, logger=local_logger)
+    if not result or sender is None:
+        local_logger.error("Failed to create HeartbeatSender", True)
+        return
 
-    # Main loop: do work.
+    local_logger.info("HeartbeatSender created, entering main loop", True)
 
+    try:
+        while not controller.is_exit_requested():
+            time.sleep(heartbeat_period-0.01)
+            controller.check_pause()
+            sender.run()
+    except Exception as exc:
+        local_logger.error(f"Unhandled exception in heartbeat worker: {exc}", True)
+    finally:
+        local_logger.info("Heartbeat worker shutting down", True)
 
 # =================================================================================================
 #                            ↑ BOOTCAMPERS MODIFY ABOVE THIS COMMENT ↑

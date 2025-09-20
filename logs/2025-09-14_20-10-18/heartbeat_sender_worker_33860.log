@@ -1,0 +1,14 @@
+20:10:19: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_sender_worker.py | heartbeat_sender_worker | 48] Logger initialized
+20:10:19: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_sender_worker.py | heartbeat_sender_worker | 59] HeartbeatSender created, entering main loop
+20:10:20: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_sender.py | run | 58] Heartbeat sent
+20:10:21: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_sender.py | run | 58] Heartbeat sent
+20:10:22: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_sender.py | run | 58] Heartbeat sent
+20:10:23: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_sender.py | run | 58] Heartbeat sent
+20:10:24: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_sender.py | run | 58] Heartbeat sent
+20:10:25: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_sender.py | run | 58] Heartbeat sent
+20:10:26: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_sender.py | run | 58] Heartbeat sent
+20:10:27: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_sender.py | run | 58] Heartbeat sent
+20:10:28: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_sender.py | run | 58] Heartbeat sent
+20:10:29: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_sender.py | run | 58] Heartbeat sent
+20:10:30: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_sender.py | run | 58] Heartbeat sent
+20:10:30: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_sender_worker.py | heartbeat_sender_worker | 69] Heartbeat worker shutting down

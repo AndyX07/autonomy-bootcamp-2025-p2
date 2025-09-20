@@ -1,0 +1,18 @@
+16:27:04: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver_worker.py | heartbeat_receiver_worker | 50] Logger initialized
+16:27:04: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver_worker.py | heartbeat_receiver_worker | 63] HeartbeatReceiver created, entering main loop
+16:27:04: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 65] Heartbeat connected
+16:27:04: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 66] Heartbeat received
+16:27:05: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 66] Heartbeat received
+16:27:06: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 66] Heartbeat received
+16:27:07: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 66] Heartbeat received
+16:27:08: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 66] Heartbeat received
+16:27:13: [WARNING] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 71] Heartbeat disconnected
+16:27:17: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 65] Heartbeat connected
+16:27:17: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 66] Heartbeat received
+16:27:18: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 66] Heartbeat received
+16:27:19: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 66] Heartbeat received
+16:27:20: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 66] Heartbeat received
+16:27:21: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 66] Heartbeat received
+16:27:23: [DEBUG] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 66] Heartbeat received
+16:27:28: [WARNING] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 71] Heartbeat disconnected
+16:27:38: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver_worker.py | heartbeat_receiver_worker | 74] Heartbeat receiver worker shutting down

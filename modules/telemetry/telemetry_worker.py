@@ -19,12 +19,15 @@ from ..common.modules.logger import logger
 def telemetry_worker(
     connection: mavutil.mavfile,
     args,  # Place your own arguments here
-    # Add other necessary worker arguments here
+    output_queue: queue_proxy_wrapper.QueueProxyWrapper,
+    controller: worker_controller.WorkerController,
 ) -> None:
     """
     Worker process.
 
-    args... describe what the arguments are
+    - connection: pymavlink connection object (mavutil.mavlink_connection(...))
+    - output_queue: multiprocessing.Queue to send data to other processes
+    - controller: worker_controller.Controller used to manage worker lifecycle
     """
     # =============================================================================================
     #                          ↑ BOOTCAMPERS MODIFY ABOVE THIS COMMENT ↑
@@ -49,6 +52,18 @@ def telemetry_worker(
     # Instantiate class object (telemetry.Telemetry)
 
     # Main loop: do work.
+    result, telem = telemetry.Telemetry.create(connection, local_logger, args)
+    if not result:
+        local_logger.error("Failed to create Telemetry", True)
+        return
+    while not controller.is_exit_requested():
+        controller.check_pause()
+        data = telem.run()
+        if not data:
+            continue
+        output_queue.queue.put(data)
+        local_logger.debug(f"Telemetry data: {data}", True)
+    local_logger.info("Worker stopping", True)
 
 
 # =================================================================================================

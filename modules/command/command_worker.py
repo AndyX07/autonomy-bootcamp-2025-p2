@@ -20,12 +20,20 @@ def command_worker(
     connection: mavutil.mavfile,
     target: command.Position,
     args,  # Place your own arguments here
-    # Add other necessary worker arguments here
+    input_queue: queue_proxy_wrapper.QueueProxyWrapper,
+    output_queue: queue_proxy_wrapper.QueueProxyWrapper,
+    controller: worker_controller.WorkerController,
 ) -> None:
     """
     Worker process.
 
     args... describe what the arguments are
+    - input_queue: QueueProxyWrapper
+         - Queue to receive telemetry data.
+    - output_queue: QueueProxyWrapper
+         - Queue to send command results.
+    - controller: WorkerController
+         - Controller to manage worker lifecycle.
     """
     # =============================================================================================
     #                          ↑ BOOTCAMPERS MODIFY ABOVE THIS COMMENT ↑
@@ -48,8 +56,27 @@ def command_worker(
     #                          ↓ BOOTCAMPERS MODIFY BELOW THIS COMMENT ↓
     # =============================================================================================
     # Instantiate class object (command.Command)
+    cmd = command.Command.create(
+        connection=connection,
+        target=target,
+        args=args,
+        local_logger=local_logger,
+        output_queue=output_queue
+    )
 
     # Main loop: do work.
+    while not controller.is_exit_requested():
+        try:
+            if input_queue is None or input_queue.queue.empty():
+                continue
+            # Wait for telemetry data from input queue
+            message = input_queue.queue.get(timeout=1.0)
+            if message is None:
+                continue
+            # Process the telemetry data and make decisions
+            cmd.run(message)
+        except Exception as ex:
+            local_logger.error(f"Exception in main loop: {ex}", True)
 
 
 # =================================================================================================
