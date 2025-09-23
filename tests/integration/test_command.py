@@ -66,7 +66,6 @@ def stop(
         controller.request_exit()
     input_queue.fill_and_drain_queue()
     output_queue.fill_and_drain_queue()
-        
 
 
 def read_queue(
@@ -235,7 +234,9 @@ def main() -> int:
     ]
 
     # Just set a timer to stop the worker after a while, since the worker infinite loops
-    threading.Timer(TELEMETRY_PERIOD * len(path), stop, args=(controller, input_queue, output_queue)).start()
+    threading.Timer(
+        TELEMETRY_PERIOD * len(path), stop, args=(controller, input_queue, output_queue)
+    ).start()
 
     # Put items into input queue
     threading.Thread(target=put_queue, args=(path, input_queue)).start()
@@ -246,7 +247,6 @@ def main() -> int:
     command_worker.command_worker(
         connection,
         TARGET,
-        None,
         input_queue,
         output_queue,
         controller,

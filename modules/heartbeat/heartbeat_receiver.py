@@ -69,7 +69,7 @@ class HeartbeatReceiver:
                 if self.missed_count >= 5 and self.state != "Disconnected":
                     self.state = "Disconnected"
                     self._logger.warning("Heartbeat disconnected", True)
-            
+
             # Always put current state in queue every second for monitoring
             self._output_queue.queue.put(self.state)
         except Exception as e:  # pylint: disable=broad-exception-caught

@@ -124,8 +124,8 @@ class Telemetry:
             self.position_msg = msg
         elif msg.get_type() == "ATTITUDE":
             self.attitude_msg = msg
-        
-        # Only return telemetry data if we have both messages and 
+
+        # Only return telemetry data if we have both messages and
         # the timestamp indicates a 500ms interval (ends in 000 or 500)
         if self.position_msg and self.attitude_msg:
             ts_boot = msg.time_boot_ms

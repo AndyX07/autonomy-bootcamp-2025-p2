@@ -44,7 +44,7 @@ class Command:  # pylint: disable=too-many-instance-attributes
     ) -> Tuple[bool, Union["Command", None]]:
         """
         Falliable create (instantiation) method to create a Command object.
-        
+
         Returns:
             tuple[bool, Command | None]: A tuple containing:
                 - success: True if creation was successful, False otherwise
@@ -55,25 +55,25 @@ class Command:  # pylint: disable=too-many-instance-attributes
             if connection is None:
                 local_logger.error("Failed to create Command: connection is None")
                 return False, None
-            
+
             if target is None:
                 local_logger.error("Failed to create Command: target is None")
                 return False, None
-            
+
             if local_logger is None:
                 # Can't log this error since logger is None
                 return False, None
-            
+
             if output_queue is None:
                 local_logger.error("Failed to create Command: output_queue is None")
                 return False, None
-            
+
             # Create the Command object
             command = cls(cls.__private_key, connection, target, local_logger, output_queue)
             local_logger.info("Command object created successfully")
             return True, command
-            
-        except Exception as e:
+
+        except (TypeError, ValueError, AttributeError) as e:
             if local_logger is not None:
                 local_logger.error(f"Failed to create Command: {e}")
             return False, None
@@ -149,7 +149,17 @@ class Command:  # pylint: disable=too-many-instance-attributes
         if abs(yaw_diff_deg) > 5:
             direction = 1 if yaw_diff_deg > 0 else -1
             self.connection.mav.command_long_send(
-                1, 0, mavutil.mavlink.MAV_CMD_CONDITION_YAW, 0, yaw_diff_deg, 5, direction, 1, 0, 0, 0
+                1,
+                0,
+                mavutil.mavlink.MAV_CMD_CONDITION_YAW,
+                0,
+                yaw_diff_deg,
+                5,
+                direction,
+                1,
+                0,
+                0,
+                0,
             )
             self.output_queue.queue.put(f"CHANGE YAW: {yaw_diff_deg}")
             return
