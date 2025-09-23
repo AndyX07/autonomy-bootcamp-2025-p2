@@ -7,6 +7,7 @@ import multiprocessing as mp
 import subprocess
 import threading
 import time
+from typing import List
 
 from pymavlink import mavutil
 
@@ -36,10 +37,10 @@ TURNING_SPEED = 5  # deg/s
 # =================================================================================================
 # Add your own constants here
 
-controller = None
-input_queue = None
-output_queue = None
-args = {}
+CONTROLLER = None
+INPUT_QUEUE = None
+OUTPUT_QUEUE = None
+ARGS = {}
 
 # =================================================================================================
 #                            ↑ BOOTCAMPERS MODIFY ABOVE THIS COMMENT ↑
@@ -58,47 +59,37 @@ def start_drone() -> None:
 # =================================================================================================
 #                            ↓ BOOTCAMPERS MODIFY BELOW THIS COMMENT ↓
 # =================================================================================================
-def stop(
-    args,  # Add any necessary arguments
-) -> None:
+def stop() -> None:
     """
     Stop the workers.
     """
-    global controller
-    if controller is not None:
-        controller.request_exit()
+    if CONTROLLER is not None:
+        CONTROLLER.request_exit()
 
 
 def read_queue(
-    args,  # Add any necessary arguments
     main_logger: logger.Logger,
 ) -> None:
     """
     Read and print the output queue.
     """
-    global controller
-    global output_queue
-    if controller is None or output_queue is None:
+    if CONTROLLER is None or OUTPUT_QUEUE is None:
         return
 
-    while not controller.is_exit_requested():
-        if not output_queue.queue.empty():
-            change = output_queue.queue.get()
+    while not CONTROLLER.is_exit_requested():
+        if not OUTPUT_QUEUE.queue.empty():
+            change = OUTPUT_QUEUE.queue.get()
             main_logger.info(change, True)
 
 
-def put_queue(
-    args,  # Add any necessary arguments
-    path
-) -> None:
+def put_queue(path: List[object]) -> None:
     """
     Place mocked inputs into the input queue periodically with period TELEMETRY_PERIOD.
     """
-    global input_queue
     for point in path:
-        if input_queue is None:
+        if INPUT_QUEUE is None:
             return
-        input_queue.queue.put(point)
+        INPUT_QUEUE.queue.put(point)
         time.sleep(TELEMETRY_PERIOD)
 
 
@@ -148,15 +139,15 @@ def main() -> int:
     # =============================================================================================
     # Mock starting a worker, since cannot actually start a new process
     # Create a worker controller for your worker
-    global controller
-    controller = worker_controller.WorkerController()
+    global CONTROLLER  # pylint: disable=global-statement
+    CONTROLLER = worker_controller.WorkerController()
     # Create a multiprocess manager for synchronized queues
     manager = mp.Manager()
     # Create your queues
-    global input_queue
-    global output_queue
-    input_queue = queue_proxy_wrapper.QueueProxyWrapper(manager)
-    output_queue = queue_proxy_wrapper.QueueProxyWrapper(manager)
+    global INPUT_QUEUE  # pylint: disable=global-statement
+    global OUTPUT_QUEUE  # pylint: disable=global-statement
+    INPUT_QUEUE = queue_proxy_wrapper.QueueProxyWrapper(manager)
+    OUTPUT_QUEUE = queue_proxy_wrapper.QueueProxyWrapper(manager)
 
     # Test cases, DO NOT EDIT!
     path = [
@@ -243,21 +234,21 @@ def main() -> int:
     ]
 
     # Just set a timer to stop the worker after a while, since the worker infinite loops
-    threading.Timer(TELEMETRY_PERIOD * len(path), stop, args=(args,)).start()
+    threading.Timer(TELEMETRY_PERIOD * len(path), stop).start()
 
     # Put items into input queue
-    threading.Thread(target=put_queue, args=(args, path)).start()
+    threading.Thread(target=put_queue, args=(path,)).start()
 
     # Read the main queue (worker outputs)
-    threading.Thread(target=read_queue, args=(args, main_logger)).start()
+    threading.Thread(target=read_queue, args=(main_logger,)).start()
 
     command_worker.command_worker(
         connection,
         TARGET,
-        args,  # Place your own arguments here
-        input_queue,
-        output_queue,
-        controller,
+        ARGS,  # Place your own arguments here
+        INPUT_QUEUE,
+        OUTPUT_QUEUE,
+        CONTROLLER,
     )
     # =============================================================================================
     #                          ↑ BOOTCAMPERS MODIFY ABOVE THIS COMMENT ↑

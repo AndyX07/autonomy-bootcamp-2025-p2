@@ -228,7 +228,7 @@ def main() -> int:
     timeout = 100
 
     while time.time() - start_time < timeout:
-        if connection is None or not hasattr(connection, 'target_system'):
+        if connection is None or not hasattr(connection, "target_system"):
             main_logger.info("Drone disconnected")
             break
 

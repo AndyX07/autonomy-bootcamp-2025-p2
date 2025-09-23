@@ -2,7 +2,7 @@
 Telemetry gathering logic.
 """
 
-import time
+from typing import Tuple, Union, Optional
 
 from pymavlink import mavutil
 
@@ -77,15 +77,15 @@ class Telemetry:
         cls,
         connection: mavutil.mavfile,
         local_logger: logger.Logger,
-        args,  # Put your own arguments here
-    ):
+        args: object,  # Put your own arguments here
+    ) -> Tuple[bool, Union["Telemetry", None]]:
         """
         Falliable create (instantiation) method to create a Telemetry object.
         """
         try:
             instance = cls(cls.__private_key, connection, args, local_logger)
             return True, instance
-        except Exception as ex:
+        except Exception as ex:  # pylint: disable=broad-exception-caught
             local_logger.error(f"Failed to create Telemetry object: {ex}")
             return False, None
 
@@ -93,7 +93,7 @@ class Telemetry:
         self,
         key: object,
         connection: mavutil.mavfile,
-        args,  # Put your own arguments here
+        args: object,  # Put your own arguments here
         local_logger: logger.Logger,
     ) -> None:
         assert key is Telemetry.__private_key, "Use create() method"
@@ -105,7 +105,7 @@ class Telemetry:
 
     def run(
         self,
-    ):
+    ) -> Optional[TelemetryData]:
         """
         Receive LOCAL_POSITION_NED and ATTITUDE messages from the drone,
         combining them together to form a single TelemetryData object.
@@ -142,6 +142,8 @@ class Telemetry:
                 yaw_speed=self.attitude_msg.yawspeed,
             )
             return telemetry_data
+
+        return None
 
 
 # =================================================================================================

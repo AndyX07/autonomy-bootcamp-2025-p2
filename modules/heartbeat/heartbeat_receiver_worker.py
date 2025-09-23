@@ -4,6 +4,7 @@ Heartbeat worker that sends heartbeats periodically.
 
 import os
 import pathlib
+import time
 
 from pymavlink import mavutil
 
@@ -16,7 +17,7 @@ from ..common.modules.logger import logger
 # =================================================================================================
 #                            ↓ BOOTCAMPERS MODIFY BELOW THIS COMMENT ↓
 # =================================================================================================
-import time
+
 
 def heartbeat_receiver_worker(
     connection: mavutil.mavfile,
@@ -55,7 +56,9 @@ def heartbeat_receiver_worker(
     # Instantiate class object (heartbeat_receiver.HeartbeatReceiver)
 
     # Main loop: do work.
-    result, receiver = heartbeat_receiver.HeartbeatReceiver.create(connection, output_queue, local_logger)
+    result, receiver = heartbeat_receiver.HeartbeatReceiver.create(
+        connection, output_queue, local_logger
+    )
     if not result:
         local_logger.error("Failed to create HeartbeatReceiver", True)
         return
@@ -68,10 +71,11 @@ def heartbeat_receiver_worker(
             receiver.run()
             time.sleep(heartbeat_period)
 
-    except Exception as exc:
+    except Exception as exc:  # pylint: disable=broad-exception-caught
         local_logger.error(f"Unhandled exception in heartbeat receiver worker: {exc}", True)
     finally:
         local_logger.info("Heartbeat receiver worker shutting down", True)
+
 
 # =================================================================================================
 #                            ↑ BOOTCAMPERS MODIFY ABOVE THIS COMMENT ↑

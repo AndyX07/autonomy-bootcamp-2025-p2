@@ -6,6 +6,7 @@ import math
 
 from pymavlink import mavutil
 
+from utilities.workers.queue_proxy_wrapper import QueueProxyWrapper
 from ..common.modules.logger import logger
 from ..telemetry import telemetry
 
@@ -37,10 +38,10 @@ class Command:  # pylint: disable=too-many-instance-attributes
         cls,
         connection: mavutil.mavfile,
         target: Position,
-        args,  # Put your own arguments here
+        args: object,  # Put your own arguments here
         local_logger: logger.Logger,
-        output_queue
-    ):
+        output_queue: QueueProxyWrapper,
+    ) -> "Command":
         """
         Falliable create (instantiation) method to create a Command object.
         """
@@ -51,9 +52,9 @@ class Command:  # pylint: disable=too-many-instance-attributes
         key: object,
         connection: mavutil.mavfile,
         target: Position,
-        args,  # Put your own arguments here
+        args: object,  # Put your own arguments here  # pylint: disable=unused-argument
         local_logger: logger.Logger,
-        output_queue
+        output_queue: QueueProxyWrapper,
     ) -> None:
         assert key is Command.__private_key, "Use create() method"
         self.connection = connection
@@ -65,7 +66,7 @@ class Command:  # pylint: disable=too-many-instance-attributes
     def run(
         self,
         telemetry_data: telemetry.TelemetryData,
-    ):
+    ) -> None:
         """
         Make a decision based on received telemetry data.
         """
@@ -85,12 +86,17 @@ class Command:  # pylint: disable=too-many-instance-attributes
         if abs(delta_z) > 0.5:
             # Send altitude command with required mock parameters
             self.connection.mav.command_long_send(
-                1, 0,
+                1,
+                0,
                 mavutil.mavlink.MAV_CMD_CONDITION_CHANGE_ALT,
                 0,
-                1,                  # param1: ascent/descent speed (Z_SPEED = 1)
-                0, 0, 0, 0, 0,      # params 2-6 unused
-                self.target.z       # param7: absolute target altitude
+                1,  # param1: ascent/descent speed (Z_SPEED = 1)
+                0,
+                0,
+                0,
+                0,
+                0,  # params 2-6 unused
+                self.target.z,  # param7: absolute target altitude
             )
             self.output_queue.queue.put(f"CHANGE ALTITUDE: {delta_z}")
             return
@@ -105,13 +111,7 @@ class Command:  # pylint: disable=too-many-instance-attributes
         yaw_diff_deg = (yaw_diff_deg + 180) % 360 - 180
         if abs(yaw_diff_deg) > 5:
             self.connection.mav.command_long_send(
-                1, 0,
-                mavutil.mavlink.MAV_CMD_CONDITION_YAW,
-                0,
-                yaw_diff_deg,
-                5,
-                1,
-                1, 0, 0, 0
+                1, 0, mavutil.mavlink.MAV_CMD_CONDITION_YAW, 0, yaw_diff_deg, 5, 1, 1, 0, 0, 0
             )
             self.output_queue.queue.put(f"CHANGE YAW: {yaw_diff_deg}")
             return

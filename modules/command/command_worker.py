@@ -19,7 +19,7 @@ from ..common.modules.logger import logger
 def command_worker(
     connection: mavutil.mavfile,
     target: command.Position,
-    args,  # Place your own arguments here
+    args: object,  # Place your own arguments here
     input_queue: queue_proxy_wrapper.QueueProxyWrapper,
     output_queue: queue_proxy_wrapper.QueueProxyWrapper,
     controller: worker_controller.WorkerController,
@@ -61,7 +61,7 @@ def command_worker(
         target=target,
         args=args,
         local_logger=local_logger,
-        output_queue=output_queue
+        output_queue=output_queue,
     )
 
     # Main loop: do work.
@@ -75,7 +75,7 @@ def command_worker(
                 continue
             # Process the telemetry data and make decisions
             cmd.run(message)
-        except Exception as ex:
+        except Exception as ex:  # pylint: disable=broad-exception-caught
             local_logger.error(f"Exception in main loop: {ex}", True)
 
 
