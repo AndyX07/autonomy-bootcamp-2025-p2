@@ -37,11 +37,6 @@ TURNING_SPEED = 5  # deg/s
 # =================================================================================================
 # Add your own constants here
 
-CONTROLLER = None
-INPUT_QUEUE = None
-OUTPUT_QUEUE = None
-ARGS = {}
-
 # =================================================================================================
 #                            ↑ BOOTCAMPERS MODIFY ABOVE THIS COMMENT ↑
 # =================================================================================================
@@ -59,37 +54,46 @@ def start_drone() -> None:
 # =================================================================================================
 #                            ↓ BOOTCAMPERS MODIFY BELOW THIS COMMENT ↓
 # =================================================================================================
-def stop() -> None:
+def stop(
+    controller: worker_controller.WorkerController,
+    input_queue: queue_proxy_wrapper.QueueProxyWrapper,
+    output_queue: queue_proxy_wrapper.QueueProxyWrapper,
+) -> None:
     """
-    Stop the workers.
+    Stop the workers and properly drain the queues.
     """
-    if CONTROLLER is not None:
-        CONTROLLER.request_exit()
+    if controller is not None:
+        controller.request_exit()
+    input_queue.fill_and_drain_queue()
+    output_queue.fill_and_drain_queue()
+        
 
 
 def read_queue(
     main_logger: logger.Logger,
+    controller: worker_controller.WorkerController,
+    output_queue: queue_proxy_wrapper.QueueProxyWrapper,
 ) -> None:
     """
     Read and print the output queue.
     """
-    if CONTROLLER is None or OUTPUT_QUEUE is None:
+    if controller is None or output_queue is None:
         return
 
-    while not CONTROLLER.is_exit_requested():
-        if not OUTPUT_QUEUE.queue.empty():
-            change = OUTPUT_QUEUE.queue.get()
+    while not controller.is_exit_requested():
+        if not output_queue.queue.empty():
+            change = output_queue.queue.get()
             main_logger.info(change, True)
 
 
-def put_queue(path: List[object]) -> None:
+def put_queue(path: List[object], input_queue: queue_proxy_wrapper.QueueProxyWrapper) -> None:
     """
     Place mocked inputs into the input queue periodically with period TELEMETRY_PERIOD.
     """
     for point in path:
-        if INPUT_QUEUE is None:
+        if input_queue is None:
             return
-        INPUT_QUEUE.queue.put(point)
+        input_queue.queue.put(point)
         time.sleep(TELEMETRY_PERIOD)
 
 
@@ -139,15 +143,12 @@ def main() -> int:
     # =============================================================================================
     # Mock starting a worker, since cannot actually start a new process
     # Create a worker controller for your worker
-    global CONTROLLER  # pylint: disable=global-statement
-    CONTROLLER = worker_controller.WorkerController()
+    controller = worker_controller.WorkerController()
     # Create a multiprocess manager for synchronized queues
     manager = mp.Manager()
     # Create your queues
-    global INPUT_QUEUE  # pylint: disable=global-statement
-    global OUTPUT_QUEUE  # pylint: disable=global-statement
-    INPUT_QUEUE = queue_proxy_wrapper.QueueProxyWrapper(manager)
-    OUTPUT_QUEUE = queue_proxy_wrapper.QueueProxyWrapper(manager)
+    input_queue = queue_proxy_wrapper.QueueProxyWrapper(manager)
+    output_queue = queue_proxy_wrapper.QueueProxyWrapper(manager)
 
     # Test cases, DO NOT EDIT!
     path = [
@@ -234,21 +235,21 @@ def main() -> int:
     ]
 
     # Just set a timer to stop the worker after a while, since the worker infinite loops
-    threading.Timer(TELEMETRY_PERIOD * len(path), stop).start()
+    threading.Timer(TELEMETRY_PERIOD * len(path), stop, args=(controller, input_queue, output_queue)).start()
 
     # Put items into input queue
-    threading.Thread(target=put_queue, args=(path,)).start()
+    threading.Thread(target=put_queue, args=(path, input_queue)).start()
 
     # Read the main queue (worker outputs)
-    threading.Thread(target=read_queue, args=(main_logger,)).start()
+    threading.Thread(target=read_queue, args=(main_logger, controller, output_queue)).start()
 
     command_worker.command_worker(
         connection,
         TARGET,
-        ARGS,  # Place your own arguments here
-        INPUT_QUEUE,
-        OUTPUT_QUEUE,
-        CONTROLLER,
+        None,
+        input_queue,
+        output_queue,
+        controller,
     )
     # =============================================================================================
     #                          ↑ BOOTCAMPERS MODIFY ABOVE THIS COMMENT ↑

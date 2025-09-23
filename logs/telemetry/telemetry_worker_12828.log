@@ -1,6 +1,5 @@
-13:36:48: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\common\modules\logger\logger_main_setup.py | setup_main_logger | 62] main logger initialized
-13:36:49: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | main | 110] Connected!
-13:36:49: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:49: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 47] Logger initialized
+13:36:49: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 0,
             x: 0.0,
             y: 0.0,
@@ -15,7 +14,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:49: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:49: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 500,
             x: 0.5,
             y: 0.0,
@@ -30,7 +29,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:50: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:50: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 1000,
             x: 0.5,
             y: 0.0,
@@ -45,7 +44,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:50: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:50: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 1000,
             x: 1.0,
             y: 0.0,
@@ -60,7 +59,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:50: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:50: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 1500,
             x: 1.5,
             y: 0.0,
@@ -75,7 +74,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:51: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:51: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 2000,
             x: 1.5,
             y: 0.0,
@@ -90,7 +89,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:51: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:51: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 2000,
             x: 2.0,
             y: 0.0,
@@ -105,7 +104,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:51: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:51: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 2500,
             x: 2.5,
             y: 0.0,
@@ -120,7 +119,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:52: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:52: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 3000,
             x: 2.5,
             y: 0.0,
@@ -135,7 +134,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:52: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:52: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 3000,
             x: 3.0,
             y: 0.0,
@@ -150,7 +149,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:52: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:52: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 3500,
             x: 3.5,
             y: 0.0,
@@ -165,7 +164,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:53: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:53: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 4000,
             x: 3.5,
             y: 0.0,
@@ -180,7 +179,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:53: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:53: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 4000,
             x: 4.0,
             y: 0.0,
@@ -195,7 +194,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:53: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:53: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 4500,
             x: 4.5,
             y: 0.0,
@@ -210,7 +209,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:57: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:57: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 0,
             x: 3.0,
             y: 2.0,
@@ -225,7 +224,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:57: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:57: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 0,
             x: 0.0,
             y: 0.0,
@@ -240,7 +239,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:58: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:58: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 1000,
             x: 0.6666666865348816,
             y: 0.0,
@@ -255,7 +254,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:58: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:58: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 1000,
             x: 1.0,
             y: 0.0,
@@ -270,7 +269,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:58: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:58: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 1500,
             x: 1.3333333730697632,
             y: 0.0,
@@ -285,7 +284,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:59: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:59: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 2000,
             x: 1.6666666269302368,
             y: 0.0,
@@ -300,7 +299,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:36:59: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:36:59: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 2000,
             x: 2.0,
             y: 0.0,
@@ -315,7 +314,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:37:00: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:37:00: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 3000,
             x: 2.6666667461395264,
             y: 0.0,
@@ -330,7 +329,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:37:00: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:37:00: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 3000,
             x: 3.0,
             y: 0.0,
@@ -345,7 +344,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:37:01: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:37:01: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 4000,
             x: 3.6666667461395264,
             y: 0.0,
@@ -360,7 +359,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:37:01: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:37:01: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 4000,
             x: 4.0,
             y: 0.0,
@@ -375,7 +374,7 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
-13:37:01: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_telemetry.py | read_queue | 69] Telemetry data: {
+13:37:01: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 65] Telemetry data: {
             time_since_boot: 4500,
             x: 4.333333492279053,
             y: 0.0,
@@ -390,3 +389,4 @@
             pitch_speed: 0.0,
             yaw_speed: 3.1415927410125732
         }
+13:37:02: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\telemetry\telemetry_worker.py | telemetry_worker | 66] Worker stopping

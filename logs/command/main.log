@@ -1,28 +1,28 @@
-20:00:53: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\modules\common\modules\logger\logger_main_setup.py | setup_main_logger | 62] main logger initialized
-20:00:54: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | main | 143] Connected!
-20:00:54: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE ALTITUDE: 1
-20:00:55: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE ALTITUDE: -1
-20:00:58: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: 63.434948822922024
-20:00:58: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: 90.0
-20:00:59: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: 116.56505117707798
-20:00:59: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: 45.0
-20:01:00: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: 63.434948822921996
-20:01:00: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: 90.0
-20:01:01: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: 26.565051177077976
-20:01:01: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: 45.0
-20:01:02: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: 90.0
-20:01:02: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: 45.0
-20:01:03: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: 90.0
-20:01:03: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: 135.0
-20:01:04: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: -26.565051177077976
-20:01:04: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: -45.0
-20:01:05: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: -90.0
-20:01:05: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: -45.0
-20:01:06: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: -90.0
-20:01:06: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: -135.0
-20:01:07: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: -63.434948822921996
-20:01:07: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: -90.0
-20:01:08: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: -116.56505117707798
-20:01:08: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: -45.0
-20:01:09: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: -63.43494882292201
-20:01:09: [INFO] [C:\Users\Andy Xu\Desktop\Python Projects\warg-auto-bootcamp\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 87] CHANGE YAW: -90.0
+13:48:53: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\common\modules\logger\logger_main_setup.py | setup_main_logger | 62] main logger initialized
+13:48:53: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | main | 134] Connected!
+13:48:53: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE ALTITUDE: 1
+13:48:54: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE ALTITUDE: -1
+13:48:57: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: 63.434948822922024
+13:48:57: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: 90.0
+13:48:58: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: 116.56505117707798
+13:48:58: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: 45.0
+13:48:59: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: 63.434948822921996
+13:48:59: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: 90.0
+13:49:00: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: 26.565051177077976
+13:49:00: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: 45.0
+13:49:01: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: 90.0
+13:49:01: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: 45.0
+13:49:02: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: 90.0
+13:49:02: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: 135.0
+13:49:03: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: -26.565051177077976
+13:49:03: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: -45.0
+13:49:04: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: -90.0
+13:49:04: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: -45.0
+13:49:05: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: -90.0
+13:49:05: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: -135.0
+13:49:06: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: -63.434948822921996
+13:49:06: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: -90.0
+13:49:07: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: -116.56505117707798
+13:49:07: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: -45.0
+13:49:08: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: -63.43494882292201
+13:49:08: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\test_command.py | read_queue | 82] CHANGE YAW: -90.0

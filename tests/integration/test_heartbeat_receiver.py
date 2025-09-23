@@ -61,8 +61,8 @@ def stop() -> None:
 
 def read_queue(
     main_logger: logger.Logger,
-    local_controller: worker_controller.WorkerController,
     local_output_queue: queue_proxy_wrapper.QueueProxyWrapper,
+    local_controller: worker_controller.WorkerController,
 ) -> None:
     """
     Read and print the output queue.

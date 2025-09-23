@@ -3,6 +3,7 @@ Decision-making logic.
 """
 
 import math
+from typing import Tuple, Union
 
 from pymavlink import mavutil
 
@@ -38,21 +39,50 @@ class Command:  # pylint: disable=too-many-instance-attributes
         cls,
         connection: mavutil.mavfile,
         target: Position,
-        args: object,  # Put your own arguments here
         local_logger: logger.Logger,
         output_queue: QueueProxyWrapper,
-    ) -> "Command":
+    ) -> Tuple[bool, Union["Command", None]]:
         """
         Falliable create (instantiation) method to create a Command object.
+        
+        Returns:
+            tuple[bool, Command | None]: A tuple containing:
+                - success: True if creation was successful, False otherwise
+                - command: The Command object if successful, None if failed
         """
-        return cls(cls.__private_key, connection, target, args, local_logger, output_queue)
+        try:
+            # Validate required parameters
+            if connection is None:
+                local_logger.error("Failed to create Command: connection is None")
+                return False, None
+            
+            if target is None:
+                local_logger.error("Failed to create Command: target is None")
+                return False, None
+            
+            if local_logger is None:
+                # Can't log this error since logger is None
+                return False, None
+            
+            if output_queue is None:
+                local_logger.error("Failed to create Command: output_queue is None")
+                return False, None
+            
+            # Create the Command object
+            command = cls(cls.__private_key, connection, target, local_logger, output_queue)
+            local_logger.info("Command object created successfully")
+            return True, command
+            
+        except Exception as e:
+            if local_logger is not None:
+                local_logger.error(f"Failed to create Command: {e}")
+            return False, None
 
     def __init__(
         self,
         key: object,
         connection: mavutil.mavfile,
         target: Position,
-        args: object,  # Put your own arguments here  # pylint: disable=unused-argument
         local_logger: logger.Logger,
         output_queue: QueueProxyWrapper,
     ) -> None:
@@ -70,7 +100,14 @@ class Command:  # pylint: disable=too-many-instance-attributes
         """
         Make a decision based on received telemetry data.
         """
-        # Log average velocity for this trip so far
+        # ----------------- AVERAGE VELOCITY -----------------
+        # Calculate average velocity first, before any command logic
+        vx, vy, vz = telemetry_data.x_velocity, telemetry_data.y_velocity, telemetry_data.z_velocity
+        self.velocity_history.append((vx, vy, vz))
+        avg_vx = sum(v[0] for v in self.velocity_history) / len(self.velocity_history)
+        avg_vy = sum(v[1] for v in self.velocity_history) / len(self.velocity_history)
+        avg_vz = sum(v[2] for v in self.velocity_history) / len(self.velocity_history)
+        self.logger.info(f"AVERAGE VELOCITY: ({avg_vx}, {avg_vy}, {avg_vz})")
 
         # Use COMMAND_LONG (76) message, assume the target_system=1 and target_componenet=0
         # The appropriate commands to use are instructed below
@@ -110,19 +147,12 @@ class Command:  # pylint: disable=too-many-instance-attributes
         yaw_diff_deg = target_yaw_deg - now_yaw_deg
         yaw_diff_deg = (yaw_diff_deg + 180) % 360 - 180
         if abs(yaw_diff_deg) > 5:
+            direction = 1 if yaw_diff_deg > 0 else -1
             self.connection.mav.command_long_send(
-                1, 0, mavutil.mavlink.MAV_CMD_CONDITION_YAW, 0, yaw_diff_deg, 5, 1, 1, 0, 0, 0
+                1, 0, mavutil.mavlink.MAV_CMD_CONDITION_YAW, 0, yaw_diff_deg, 5, direction, 1, 0, 0, 0
             )
             self.output_queue.queue.put(f"CHANGE YAW: {yaw_diff_deg}")
             return
-
-        # ----------------- AVERAGE VELOCITY -----------------
-        vx, vy, vz = telemetry_data.x_velocity, telemetry_data.y_velocity, telemetry_data.z_velocity
-        self.velocity_history.append((vx, vy, vz))
-        avg_vx = sum(v[0] for v in self.velocity_history) / len(self.velocity_history)
-        avg_vy = sum(v[1] for v in self.velocity_history) / len(self.velocity_history)
-        avg_vz = sum(v[2] for v in self.velocity_history) / len(self.velocity_history)
-        self.logger.info(f"AVERAGE VELOCITY: ({avg_vx:.2f}, {avg_vy:.2f}, {avg_vz:.2f})")
 
 
 # =================================================================================================

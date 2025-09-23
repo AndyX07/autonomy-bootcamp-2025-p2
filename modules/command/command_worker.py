@@ -56,13 +56,17 @@ def command_worker(
     #                          ↓ BOOTCAMPERS MODIFY BELOW THIS COMMENT ↓
     # =============================================================================================
     # Instantiate class object (command.Command)
-    cmd = command.Command.create(
+    success, cmd = command.Command.create(
         connection=connection,
         target=target,
         args=args,
         local_logger=local_logger,
         output_queue=output_queue,
     )
+    
+    if not success or cmd is None:
+        local_logger.error("Failed to create Command object, exiting worker", True)
+        return
 
     # Main loop: do work.
     while not controller.is_exit_requested():
