@@ -173,9 +173,7 @@ def main() -> int:
         main_logger.error("Failed to create telemetry manager")
         return -1
 
-    result, command_manager = worker_manager.WorkerManager.create(
-        command_properties, main_logger
-    )
+    result, command_manager = worker_manager.WorkerManager.create(command_properties, main_logger)
     if not result:
         main_logger.error("Failed to create command manager")
         return -1
