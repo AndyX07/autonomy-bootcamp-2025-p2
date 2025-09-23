@@ -220,9 +220,6 @@ def main() -> int:
         except KeyboardInterrupt:
             main_logger.info("Keyboard interrupt received")
             break
-        except Exception as e:
-            main_logger.error(f"Error in main loop: {e}")
-            break
 
     # Stop the processes
     controller.request_exit()
@@ -233,10 +230,10 @@ def main() -> int:
     command_queue.fill_queue_with_sentinel()
     telemetry_queue.fill_queue_with_sentinel()
     heartbeat_queue.fill_queue_with_sentinel()
-    
+
     # Wait a moment for workers to process sentinel values
     time.sleep(0.5)
-    
+
     # Drain queues
     command_queue.drain_queue()
     telemetry_queue.drain_queue()
