@@ -55,10 +55,7 @@ def command_worker(
     # =============================================================================================
     # Instantiate class object (command.Command)
     success, cmd = command.Command.create(
-        connection=connection,
-        target=target,
-        local_logger=local_logger,
-        output_queue=output_queue,
+        connection=connection, target=target, local_logger=local_logger
     )
 
     if not success or cmd is None:
@@ -67,6 +64,7 @@ def command_worker(
 
     # Main loop: do work.
     while not controller.is_exit_requested():
+        controller.check_pause()
         try:
             if input_queue is None or input_queue.queue.empty():
                 continue
@@ -75,7 +73,9 @@ def command_worker(
             if message is None:
                 continue
             # Process the telemetry data and make decisions
-            cmd.run(message)
+            result = cmd.run(message)
+            if result is not None and output_queue is not None:
+                output_queue.queue.put(result)
         except Exception as ex:  # pylint: disable=broad-exception-caught
             local_logger.error(f"Exception in main loop: {ex}", True)
 

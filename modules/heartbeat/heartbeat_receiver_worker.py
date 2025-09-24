@@ -56,9 +56,7 @@ def heartbeat_receiver_worker(
     # Instantiate class object (heartbeat_receiver.HeartbeatReceiver)
 
     # Main loop: do work.
-    result, receiver = heartbeat_receiver.HeartbeatReceiver.create(
-        connection, output_queue, local_logger
-    )
+    result, receiver = heartbeat_receiver.HeartbeatReceiver.create(connection, local_logger)
     if not result:
         local_logger.error("Failed to create HeartbeatReceiver", True)
         return
@@ -69,6 +67,7 @@ def heartbeat_receiver_worker(
         while not controller.is_exit_requested():
             controller.check_pause()
             receiver.run()
+            output_queue.queue.put(receiver.state)
             time.sleep(heartbeat_period)
 
     except Exception as exc:  # pylint: disable=broad-exception-caught

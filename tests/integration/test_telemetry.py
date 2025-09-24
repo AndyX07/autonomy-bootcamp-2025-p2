@@ -29,9 +29,6 @@ NUM_FAILS = 3
 # =================================================================================================
 # Add your own constants here
 
-CONTROLLER = None
-OUTPUT_QUEUE = None
-
 # =================================================================================================
 #                            ↑ BOOTCAMPERS MODIFY ABOVE THIS COMMENT ↑
 # =================================================================================================
@@ -49,21 +46,23 @@ def start_drone() -> None:
 # =================================================================================================
 #                            ↓ BOOTCAMPERS MODIFY BELOW THIS COMMENT ↓
 # =================================================================================================
-def stop() -> None:
+def stop(controller: worker_controller.WorkerController) -> None:
     """
     Stop the workers.
     """
-    if CONTROLLER is not None:
-        CONTROLLER.request_exit()
+    if controller is not None:
+        controller.request_exit()
 
 
 def read_queue(
-    main_logger: logger.Logger, local_output_queue: queue_proxy_wrapper.QueueProxyWrapper
+    main_logger: logger.Logger,
+    local_output_queue: queue_proxy_wrapper.QueueProxyWrapper,
+    controller: worker_controller.WorkerController,
 ) -> None:
     """
     Read and print the output queue.
     """
-    while not CONTROLLER.is_exit_requested():
+    while not controller.is_exit_requested():
         if not local_output_queue.queue.empty():
             data = local_output_queue.queue.get()
             main_logger.info(f"Telemetry data: {data}", True)
@@ -115,27 +114,24 @@ def main() -> int:
     # =============================================================================================
     # Mock starting a worker, since cannot actually start a new process
     # Create a worker controller for your worker
-    global CONTROLLER  # pylint: disable=global-statement
-    global OUTPUT_QUEUE  # pylint: disable=global-statement
 
-    CONTROLLER = worker_controller.WorkerController()
+    controller = worker_controller.WorkerController()
 
     # Create a multiprocess manager for synchronized queues
     manager = mp.Manager()
 
     # Create your queues
-    OUTPUT_QUEUE = queue_proxy_wrapper.QueueProxyWrapper(manager)
+    output_queue = queue_proxy_wrapper.QueueProxyWrapper(manager)
     # Just set a timer to stop the worker after a while, since the worker infinite loops
-    threading.Timer(TELEMETRY_PERIOD * NUM_TRIALS * 2 + NUM_FAILS, stop).start()
+    threading.Timer(TELEMETRY_PERIOD * NUM_TRIALS * 2 + NUM_FAILS, stop, args=(controller,)).start()
 
     # Read the main queue (worker outputs)
-    threading.Thread(target=read_queue, args=(main_logger, OUTPUT_QUEUE)).start()
+    threading.Thread(target=read_queue, args=(main_logger, output_queue, controller)).start()
 
     telemetry_worker.telemetry_worker(
         connection=connection,
-        args={},
-        output_queue=OUTPUT_QUEUE,
-        controller=CONTROLLER,
+        output_queue=output_queue,
+        controller=controller,
     )
     # =============================================================================================
     #                          ↑ BOOTCAMPERS MODIFY ABOVE THIS COMMENT ↑

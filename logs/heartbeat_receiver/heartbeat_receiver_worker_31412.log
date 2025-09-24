@@ -1,0 +1,17 @@
+22:44:47: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver_worker.py | heartbeat_receiver_worker | 51] Logger initialized
+22:44:47: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver_worker.py | heartbeat_receiver_worker | 66] HeartbeatReceiver created, entering main loop
+22:44:47: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 62] Heartbeat connected
+22:44:47: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 63] Heartbeat received
+22:44:48: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 63] Heartbeat received
+22:44:49: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 63] Heartbeat received
+22:44:50: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 63] Heartbeat received
+22:44:51: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 63] Heartbeat received
+22:44:56: [WARNING] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 68] Heartbeat disconnected
+22:45:00: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 62] Heartbeat connected
+22:45:00: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 63] Heartbeat received
+22:45:01: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 63] Heartbeat received
+22:45:02: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 63] Heartbeat received
+22:45:04: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 63] Heartbeat received
+22:45:05: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 63] Heartbeat received
+22:45:07: [DEBUG] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver.py | run | 63] Heartbeat received
+22:45:09: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\modules\heartbeat\heartbeat_receiver_worker.py | heartbeat_receiver_worker | 78] Heartbeat receiver worker shutting down

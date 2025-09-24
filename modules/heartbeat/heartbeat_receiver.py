@@ -5,7 +5,6 @@ Heartbeat receiving logic.
 from typing import Tuple, Union
 from pymavlink import mavutil
 
-from utilities.workers.queue_proxy_wrapper import QueueProxyWrapper
 from ..common.modules.logger import logger
 
 
@@ -23,14 +22,13 @@ class HeartbeatReceiver:
     def create(
         cls,
         connection: mavutil.mavfile,
-        output_queue: QueueProxyWrapper,
         local_logger: logger.Logger,
     ) -> Tuple[bool, Union["HeartbeatReceiver", None]]:
         """
         Falliable create (instantiation) method to create a HeartbeatReceiver object.
         """
         try:
-            instance = cls(cls.__private_key, connection, output_queue, local_logger)
+            instance = cls(cls.__private_key, connection, local_logger)
             return True, instance
         except Exception as e:  # pylint: disable=broad-exception-caught
             local_logger.error(f"HeartbeatReceiver create failed: {e}", True)
@@ -40,12 +38,10 @@ class HeartbeatReceiver:
         self,
         key: object,
         connection: mavutil.mavfile,
-        output_queue: QueueProxyWrapper,
         local_logger: logger.Logger,
     ) -> None:
         assert key is HeartbeatReceiver.__private_key, "Use create() method"
         self._connection = connection
-        self._output_queue = output_queue
         self._logger = local_logger
         self.missed_count = 0
         self.state = "Disconnected"
@@ -69,9 +65,6 @@ class HeartbeatReceiver:
                 if self.missed_count >= 5 and self.state != "Disconnected":
                     self.state = "Disconnected"
                     self._logger.warning("Heartbeat disconnected", True)
-
-            # Always put current state in queue every second for monitoring
-            self._output_queue.queue.put(self.state)
         except Exception as e:  # pylint: disable=broad-exception-caught
             self._logger.error(f"HeartbeatReceiver run failed: {e}", True)
 

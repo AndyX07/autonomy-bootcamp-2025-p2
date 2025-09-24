@@ -7,7 +7,6 @@ from typing import Tuple, Union
 
 from pymavlink import mavutil
 
-from utilities.workers.queue_proxy_wrapper import QueueProxyWrapper
 from ..common.modules.logger import logger
 from ..telemetry import telemetry
 
@@ -40,7 +39,6 @@ class Command:  # pylint: disable=too-many-instance-attributes
         connection: mavutil.mavfile,
         target: Position,
         local_logger: logger.Logger,
-        output_queue: QueueProxyWrapper,
     ) -> Tuple[bool, Union["Command", None]]:
         """
         Falliable create (instantiation) method to create a Command object.
@@ -64,12 +62,8 @@ class Command:  # pylint: disable=too-many-instance-attributes
                 # Can't log this error since logger is None
                 return False, None
 
-            if output_queue is None:
-                local_logger.error("Failed to create Command: output_queue is None")
-                return False, None
-
             # Create the Command object
-            command = cls(cls.__private_key, connection, target, local_logger, output_queue)
+            command = cls(cls.__private_key, connection, target, local_logger)
             local_logger.info("Command object created successfully")
             return True, command
 
@@ -84,19 +78,14 @@ class Command:  # pylint: disable=too-many-instance-attributes
         connection: mavutil.mavfile,
         target: Position,
         local_logger: logger.Logger,
-        output_queue: QueueProxyWrapper,
     ) -> None:
         assert key is Command.__private_key, "Use create() method"
         self.connection = connection
         self.target = target
         self.logger = local_logger
-        self.output_queue = output_queue
         self.velocity_history = []
 
-    def run(
-        self,
-        telemetry_data: telemetry.TelemetryData,
-    ) -> None:
+    def run(self, telemetry_data: telemetry.TelemetryData) -> None:
         """
         Make a decision based on received telemetry data.
         """
@@ -135,8 +124,7 @@ class Command:  # pylint: disable=too-many-instance-attributes
                 0,  # params 2-6 unused
                 self.target.z,  # param7: absolute target altitude
             )
-            self.output_queue.queue.put(f"CHANGE ALTITUDE: {delta_z}")
-            return
+            return f"CHANGE ALTITUDE: {delta_z}"
 
         dx = self.target.x - telemetry_data.x
         dy = self.target.y - telemetry_data.y
@@ -161,8 +149,10 @@ class Command:  # pylint: disable=too-many-instance-attributes
                 0,
                 0,
             )
-            self.output_queue.queue.put(f"CHANGE YAW: {yaw_diff_deg}")
-            return
+            return f"CHANGE YAW: {yaw_diff_deg}"
+
+        # If no command was sent, return None explicitly
+        return None
 
 
 # =================================================================================================

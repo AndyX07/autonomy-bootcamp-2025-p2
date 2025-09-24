@@ -27,8 +27,6 @@ NUM_TRIALS = 10
 # =================================================================================================
 # Add your own constants here
 
-CONTROLLER = None
-
 # =================================================================================================
 #                            ↑ BOOTCAMPERS MODIFY ABOVE THIS COMMENT ↑
 # =================================================================================================
@@ -46,12 +44,12 @@ def start_drone() -> None:
 # =================================================================================================
 #                            ↓ BOOTCAMPERS MODIFY BELOW THIS COMMENT ↓
 # =================================================================================================
-def stop() -> None:
+def stop(controller: worker_controller.WorkerController) -> None:
     """
     Stop the workers.
     """
-    if CONTROLLER is not None:
-        CONTROLLER.request_exit()
+    if controller is not None:
+        controller.request_exit()
 
 
 # =================================================================================================
@@ -95,15 +93,14 @@ def main() -> int:
     # Mock starting a worker, since cannot actually start a new process
     # Create a worker controller for your worker
 
-    global CONTROLLER  # pylint: disable=global-statement
-    CONTROLLER = worker_controller.WorkerController()
+    controller = worker_controller.WorkerController()
 
     # Set a timer to stop the worker after a while
-    threading.Timer(HEARTBEAT_PERIOD * NUM_TRIALS, stop).start()
+    threading.Timer(HEARTBEAT_PERIOD * NUM_TRIALS, stop, args=(controller,)).start()
 
     heartbeat_sender_worker.heartbeat_sender_worker(
         connection,
-        CONTROLLER,
+        controller,
         heartbeat_period=HEARTBEAT_PERIOD,
         # Add other necessary worker arguments here
     )

@@ -59,7 +59,7 @@ def heartbeat_sender_worker(
 
     try:
         while not controller.is_exit_requested():
-            time.sleep(heartbeat_period - 0.01)
+            time.sleep(heartbeat_period)
             controller.check_pause()
             sender.run()
     except Exception as exc:  # pylint: disable=broad-exception-caught

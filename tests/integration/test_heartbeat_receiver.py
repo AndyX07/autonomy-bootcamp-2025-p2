@@ -31,9 +31,6 @@ ERROR_TOLERANCE = 1e-2
 # =================================================================================================
 # Add your own constants here
 
-CONTROLLER = None
-OUTPUT_QUEUE = None
-
 # =================================================================================================
 #                            ↑ BOOTCAMPERS MODIFY ABOVE THIS COMMENT ↑
 # =================================================================================================
@@ -51,12 +48,12 @@ def start_drone() -> None:
 # =================================================================================================
 #                            ↓ BOOTCAMPERS MODIFY BELOW THIS COMMENT ↓
 # =================================================================================================
-def stop() -> None:
+def stop(controller: worker_controller.WorkerController) -> None:
     """
     Stop the workers.
     """
-    if CONTROLLER is not None:
-        CONTROLLER.request_exit()
+    if controller is not None:
+        controller.request_exit()
 
 
 def read_queue(
@@ -120,8 +117,7 @@ def main() -> int:
     # Mock starting a worker, since cannot actually start a new process
     # Create a worker controller for your worker
 
-    global CONTROLLER  # pylint: disable=global-statement
-    CONTROLLER = worker_controller.WorkerController()
+    controller = worker_controller.WorkerController()
 
     # Create a multiprocess manager for synchronized queues
 
@@ -129,21 +125,22 @@ def main() -> int:
 
     # Create your queues
 
-    global OUTPUT_QUEUE  # pylint: disable=global-statement
-    OUTPUT_QUEUE = queue_proxy_wrapper.QueueProxyWrapper(manager)
+    output_queue = queue_proxy_wrapper.QueueProxyWrapper(manager)
 
     # Just set a timer to stop the worker after a while, since the worker infinite loops
     threading.Timer(
-        HEARTBEAT_PERIOD * (NUM_TRIALS * 2 + DISCONNECT_THRESHOLD + NUM_DISCONNECTS + 2), stop
+        HEARTBEAT_PERIOD * (NUM_TRIALS * 2 + DISCONNECT_THRESHOLD + NUM_DISCONNECTS + 2),
+        stop,
+        args=(controller,),
     ).start()
 
     # Read the main queue (worker outputs)
-    threading.Thread(target=read_queue, args=(main_logger, CONTROLLER, OUTPUT_QUEUE)).start()
+    threading.Thread(target=read_queue, args=(main_logger, output_queue, controller)).start()
 
     heartbeat_receiver_worker.heartbeat_receiver_worker(
         connection,
-        OUTPUT_QUEUE,
-        CONTROLLER,
+        output_queue,
+        controller,
         heartbeat_period=HEARTBEAT_PERIOD,
         # Add other necessary worker arguments here
     )

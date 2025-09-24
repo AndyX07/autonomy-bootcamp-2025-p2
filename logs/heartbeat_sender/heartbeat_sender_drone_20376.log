@@ -1,0 +1,12 @@
+22:36:37: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\mock_drones\heartbeat_sender_drone.py | main | 40] Logger initialized
+22:36:39: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\mock_drones\heartbeat_sender_drone.py | main | 71] Drone: Recieved heartbeat!
+22:36:40: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\mock_drones\heartbeat_sender_drone.py | main | 71] Drone: Recieved heartbeat!
+22:36:41: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\mock_drones\heartbeat_sender_drone.py | main | 71] Drone: Recieved heartbeat!
+22:36:42: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\mock_drones\heartbeat_sender_drone.py | main | 71] Drone: Recieved heartbeat!
+22:36:43: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\mock_drones\heartbeat_sender_drone.py | main | 71] Drone: Recieved heartbeat!
+22:36:44: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\mock_drones\heartbeat_sender_drone.py | main | 71] Drone: Recieved heartbeat!
+22:36:45: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\mock_drones\heartbeat_sender_drone.py | main | 71] Drone: Recieved heartbeat!
+22:36:46: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\mock_drones\heartbeat_sender_drone.py | main | 71] Drone: Recieved heartbeat!
+22:36:47: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\mock_drones\heartbeat_sender_drone.py | main | 71] Drone: Recieved heartbeat!
+22:36:48: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\mock_drones\heartbeat_sender_drone.py | main | 71] Drone: Recieved heartbeat!
+22:36:49: [INFO] [C:\Dev\Programming\UWARG\autonomy-bootcamp-2025-p2\tests\integration\mock_drones\heartbeat_sender_drone.py | main | 80] Passed!
